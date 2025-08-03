@@ -1,44 +1,27 @@
-import tkinter as tk
-from tkinter import messagebox
+import streamlit as st
 
-def generate_badge():
-    name = name_entry.get()
-    trait = trait_entry.get()
-    emoji = emoji_entry.get()
+st.set_page_config(page_title="Friendship Badge Generator", page_icon="💖", layout="centered")
 
+st.title("💖 Friendship Badge Generator 💖")
+st.markdown("Create a sweet badge for your best friends! 🎁")
+
+name = st.text_input("👤 Enter your friend's name:")
+trait = st.text_input("✨ What do you love about them?")
+emoji = st.text_input("😊 Pick an emoji that reminds you of them:")
+
+if st.button("Generate Badge 🎉"):
     if name and trait and emoji:
-        badge = f"""
-        🎉 Happy Friendship Day, {name.title()}! 🎉
+        st.success(f"""
+        🎉 **Happy Friendship Day, {name.title()}!** 🎉
 
-        You're truly {trait}! Never change! {emoji}
+        You're truly *{trait}*! Never change! {emoji}
 
-        From your forever friend ❤️ Atharva
-        """
-        messagebox.showinfo("Your Friendship Badge", badge)
+        — From your forever friend ❤️ Atharva
+        """)
     else:
-        messagebox.showwarning("Oops!", "Please fill in all the fields!")
+        st.warning("Please fill in all the fields!")
 
-# GUI 
-root = tk.Tk()
-root.title("Friendship Badge Generator")
-root.geometry("400x300")
-root.config(bg="#fff0f5")
+st.markdown("---")
+st.caption("Built with 💖 by Atharva using Streamlit")
 
-title = tk.Label(root, text="💖 Friendship Badge Generator 💖", font=("Arial", 16), bg="#fff0f5", fg="#ff1493")
-title.pack(pady=10)
 
-tk.Label(root, text="Friend's Name:", bg="#fff0f5").pack()
-name_entry = tk.Entry(root)
-name_entry.pack()
-
-tk.Label(root, text="What you love about them:", bg="#fff0f5").pack()
-trait_entry = tk.Entry(root)
-trait_entry.pack()
-
-tk.Label(root, text="An emoji that reminds you of them:", bg="#fff0f5").pack()
-emoji_entry = tk.Entry(root)
-emoji_entry.pack()
-
-tk.Button(root, text="Generate Badge 🎁", command=generate_badge, bg="#ff69b4", fg="white").pack(pady=15)
-
-root.mainloop()
